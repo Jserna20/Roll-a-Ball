@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody rb;
     public float speed;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
@@ -19,5 +19,13 @@ public class PlayerControl : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("pick up"))
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 }
